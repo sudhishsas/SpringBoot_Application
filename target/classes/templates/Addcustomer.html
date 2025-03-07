@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add New Contact</title>
+    <meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <br>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div>
+        <section>
+            <form  method="post" th:action="@{/Addcustomer/added}" id="CustomerForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" id="submit">Add Customer</button>
+            </form>
+        </section>
+        <div
+        th:if="${message != null}"
+        class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+        role="alert">
+        <ul>
+            <li th:each="messag : ${message}" th:text="${messag}"></li>
+        </ul>
+      </div>
+    </div>
+    <p>
+        SEEsomeTHING.
+    </p>
+    
+    <script src="" async defer></script>
+</body>
+</html>

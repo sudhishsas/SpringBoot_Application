@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Customers</title>
+</head>
+<body>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <h1>Customer List</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.email}"></td>
+            <td>
+                <a th:href="@{/customer/update/{id}(id=${customer.id})}" th:customer="${customer.id}" id="btnEdit"
+                title="edit this customer" class="fa-regular fa-trash-can icon-dark btn-edit">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/customer/delete/{id}(id=${customer.id})}" 
+                th:onclick="'return confirm(\'Are you sure you want to delete this customer?\');'"
+                title="Delete this customer" class="fa-regular fa-trash-can icon-dark btn-delete">Remove</a>
+              </td>
+        </tr>
+    </table>
+
+    <div
+    th:if="${messages != null}"
+    class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+    role="alert">
+    <ul>
+        <li th:each="message : ${messages}" th:text="${message}"></li>
+    </ul>
+    <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+</body>
+</html>

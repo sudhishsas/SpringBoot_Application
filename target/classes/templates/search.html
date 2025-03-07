@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Page</title>
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1>Search for a Customer</h1>
+    <form th:action="@{/customer/search}" method="get">
+        <div>
+            <label for="searchType">Search by:</label>
+            <input type="radio" id="name" name="searchType" value="name" required>
+            <label for="name">Name</label>
+            <input type="radio" id="id" name="searchType" value="id" required>
+            <label for="id">ID</label>
+        </div>
+        <div>
+            <label for="query">Search Query:</label>
+            <input type="text" id="query" name="query" required>
+        </div>
+        <button type="submit">Search</button>
+    </form>
+    <br>
+
+    <div th:if="${customers != null}" class="mt-3">
+        <h2>Search Results</h2>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.email}"></td>
+            </tr>
+        </table>
+    <br>
+    <div
+    th:if="${messages != null}"
+    class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+    role="alert">
+        <ul>
+            <li th:each="message : ${messages}" th:text="${message}"></li>
+        </ul>
+        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+</body>
+</html>
+
+
+
+
+

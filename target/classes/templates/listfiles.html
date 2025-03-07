@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>See files</title>
+  <link rel="stylesheet" href="">
+ 
+</head>
+<div th:insert="fragments/navbar :: navbar"></div>
+<body>
+    <div class="container-fluid" style="max-width: 600px; margin: 0 auto;">
+        <h2 class="text-center">List of Files</h2>
+      
+        <div th:if="${files.size() > 0}">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">File Name</th>
+                <th scope="col">Link</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="file : ${files}">
+                <td>[[${file}]]</td>
+                <td><a th:href="@{'/Addcustomers/added/' + ${file}}">Add Customers</a></td>
+                <td>
+                  <a th:href="@{'/file/delete/' + ${file}}" th:filename="${file}" id="btnDelete"
+                  th:onclick="'return confirm(\'Are you sure you want to delete this File?\');'"
+                    title="Delete this file" class="fa-regular fa-trash-can icon-dark btn-delete">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div th:unless="${files.size() > 0}">
+          <span>No files found!</span>
+      </div> -->
+      <div
+        th:if="${messages != null}"
+        class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+        role="alert">
+        <ul>
+            <li th:each="message : ${messages}" th:text="${message}"></li>
+        </ul>
+    </div>
+      <div
+      th:if="${message != null}"
+      class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+      role="alert">
+      <ul>
+          <li th:each="messag : ${message}" th:text="${messag}"></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

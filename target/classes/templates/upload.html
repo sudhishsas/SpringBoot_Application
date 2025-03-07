@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ADD NEW CONTACT Upload file</title>
+    <meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div th:insert="fragments/navbar :: navbar"></div>
+<br>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="container" style="max-width: 600px">
+    <section class="container" style="max-width: 500px">
+        <form id="uploadForm" method="post" th:action="@{/files/upload}" enctype="multipart/form-data">
+            <div type="form-group" name="contact_form">
+                <input id="input-file" type="file" name="files" multiple/>
+                <button class="btn btn-sm btn-outline-success float-right" type="submit">
+                    Upload file
+                </button>
+            </div>
+        </form>
+        <div
+            th:if="${messages != null}"
+            class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+            role="alert">
+            <ul>
+                <li th:each="message : ${messages}" th:text="${message}"></li>
+            </ul>
+            <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    </section>
+</div>
+<p>
+    SEEsomeTHING.
+</p>
+
+<script src="" async defer></script>
+</body>
+</html>
